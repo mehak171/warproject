@@ -21,11 +21,15 @@ public  class Card {
       this.suit = suit;
       this.value = value;
     }
+    /**
     *@return
+    * /
     public String getSuit() {
         return suit;
     }
+    /**
     *@return
+     */
     public int getValue() {
         return value;
     }
@@ -33,8 +37,9 @@ public  class Card {
      * Students should implement this method for their specific children classes
      *
      * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
+     *@Override
      */
-    @Override
+
     public  String toString( String valueString;
         switch (value) {
             case 11:
