@@ -14,7 +14,7 @@ package ca.sheridancollege.project;
  * @author dancye
  */
 public  class Card {
-    priate String suit; 
+    private String suit;
     private int value;
     //default modifier for child classes
     public Card(String suit, int value) {
@@ -55,6 +55,6 @@ public  class Card {
         }
         return valueString + " of " + suit;
     }
-);
+)
 
 }
