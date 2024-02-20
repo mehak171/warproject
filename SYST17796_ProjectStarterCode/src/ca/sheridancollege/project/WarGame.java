@@ -18,11 +18,11 @@ public class WarGame extends Game {
 
     @Override
     public void play() {
-        // Assuming the deck is a previously defined Deck object containing a standard 52-card deck
+      
         Deck deck = new Deck();
         Collections.shuffle(deck.getCards()); // Ensure the deck is shuffled before dealing
 
-        // Evenly distribute cards to players
+      
         ArrayList<Player> players = getPlayers();
         int playerIndex = 0;
         while (!deck.isEmpty()) {
@@ -30,7 +30,7 @@ public class WarGame extends Game {
             playerIndex++;
         }
 
-        // Play rounds until one player has all the cards or a predefined condition is met
+      
         boolean gameContinue = true;
         while (gameContinue) {
             ArrayList<Card> playedCards;
