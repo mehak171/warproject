@@ -5,39 +5,43 @@
 package ca.sheridancollege.project;
 import java.util.LinkedList;
 import java.util.Queue;
-/**
- *
- * @author mehak
- */
+
 public class WarPlayer extends Player {
-    private Queue<Card> deck = new LinkedList<>(); 
+    private Queue<Card> deck = new LinkedList<>();
+    
+    @Override
+public void receiveCard(Card card) {
+    this.deck.add(card);
+}
+
 
     public WarPlayer(String name) {
         super(name);
     }
 
-  
     public void addCardToDeck(Card card) {
         deck.add(card);
     }
 
-    public Card play() {
+    @Override
+    public void play() {
+      
+    }
+
+    public Card playCard() {
         return deck.poll();
     }
 
- 
+    @Override
     public boolean hasCards() {
         return !deck.isEmpty();
     }
-
 
     public int getDeckSize() {
         return deck.size();
     }
 
-
     public void addCardsToDeck(Queue<Card> cards) {
         deck.addAll(cards);
     }
-}
 }

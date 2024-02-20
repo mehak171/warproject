@@ -13,6 +13,8 @@ public class WarGame extends Game {
       public WarGame(String name) {
         super(name);
     }
+      
+      
 
     @Override
     public void play() {
@@ -31,7 +33,8 @@ public class WarGame extends Game {
         // Play rounds until one player has all the cards or a predefined condition is met
         boolean gameContinue = true;
         while (gameContinue) {
-            ArrayList<Card> playedCards = new ArrayList<>();
+            ArrayList<Card> playedCards;
+            playedCards = new ArrayList<>();
             for (Player player : players) {
                 if (player.hasCards()) {
                     Card playedCard = player.playCard();
@@ -39,11 +42,24 @@ public class WarGame extends Game {
                     System.out.println(player.getName() + " plays " + playedCard);
                 }
             }
+            
 
         
         }
+        if(!players.isEmpty()){
+        while(!deck.isEmpty()){
+            players.get(playerIndex % players.size()).receiveCard(deck.draw());
+            playerIndex++;
+        }
+        }else{
+                System.out.println("No players have been added to the game.");}
+        
+        
     }
-
+    
+public void addPlayer(Player player) {
+   
+}
     @Override
     public void declareWinner() {
    
@@ -51,5 +67,6 @@ public class WarGame extends Game {
         Player winner = players.get(0); 
         System.out.println("Winner is " + winner.getName());
     }
+
 }
 

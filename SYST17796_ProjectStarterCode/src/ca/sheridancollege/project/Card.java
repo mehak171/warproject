@@ -13,34 +13,39 @@ package ca.sheridancollege.project;
  *
  * @author dancye
  */
-public  class Card {
-    private String suit;
-    private int value;
-    //default modifier for child classes
+public class Card {
+    private final String suit;
+    private final int value;
+
     public Card(String suit, int value) {
-      this.suit = suit;
-      this.value = value;
+        this.suit = suit;
+        this.value = value;
     }
-    /**
-    *@return
-    * /
+      /**
+     * Returns the suit of the card.
+     *
+     * @return the suit
+     */
     public String getSuit() {
         return suit;
     }
     /**
-    *@return
+     * Returns the value of the card.
+     *
+     * @return the value
      */
-    public int getValue() {
+    public int getValue(){
         return value;
     }
+    
     /**
-     * Students should implement this method for their specific children classes
+     * Provides a string representation of a card.
      *
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
-     *@Override
+     * @return a String representation of the card
      */
-
-    public  String toString( String valueString;
+    @Override
+    public String toString() {
+        String valueString;
         switch (value) {
             case 11:
                 valueString = "Jack";
@@ -56,10 +61,7 @@ public  class Card {
                 break;
             default:
                 valueString = String.valueOf(value);
-                break;
         }
         return valueString + " of " + suit;
     }
-)
-
 }

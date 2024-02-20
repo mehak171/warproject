@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public abstract class Game {
 
     private final String name;
-    private ArrayList<Player> players;
+    ArrayList<Player> players;
 
     public Game(String name) {
         this.name = name;

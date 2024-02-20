@@ -13,7 +13,6 @@ package ca.sheridancollege.project;
  * @author mehak dhalimeh
  */
 public abstract class Player {
-
     private String name; //the unique name for this player
 
     /**
@@ -21,23 +20,23 @@ public abstract class Player {
      *
      * @param name the unique ID to assign to this player.
      */
-    public Player(String name) {
+     public Player(String name) {
         this.name = name;
     }
-
     /**
      * @return the player name
      */
-    public String getName() {
+       public String getName() {
         return name;
     }
+
 
     /**
      * Ensure that the playerID is unique
      *
      * @param name the player name to set
      */
-    public void setName(String name) {
+      public void setName(String name) {
         this.name = name;
     }
 
@@ -47,4 +46,7 @@ public abstract class Player {
      */
     public abstract void play();
 
+    public abstract void receiveCard(Card card); // Method to receive a card
+    public abstract boolean hasCards(); // Method to check if the player has cards
+    public abstract Card playCard(); // Method to play a card
 }

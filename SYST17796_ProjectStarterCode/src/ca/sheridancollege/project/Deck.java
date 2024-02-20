@@ -11,7 +11,7 @@ import java.util.List;
  * @author mehak
  */
 public class Deck {
-    private List<Card> cards; // The deck of cards
+    public  List<Card> cards; 
 
     public Deck() {
         this.cards = new ArrayList<Card>();
@@ -54,4 +54,8 @@ public class Deck {
             System.out.println(card);
         }
     }
+
+    public List<Card> getCards() {
+    return this.cards;
+}
 }
