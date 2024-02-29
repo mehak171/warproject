@@ -20,8 +20,7 @@ public class WarGame extends Game {
     public void play() {
       
         Deck deck = new Deck();
-        Collections.shuffle(deck.getCards()); // Ensure the deck is shuffled before dealing
-
+        Collections.shuffle(deck.getCards()); 
       
         ArrayList<Player> players = getPlayers();
         int playerIndex = 0;
@@ -58,7 +57,7 @@ public class WarGame extends Game {
     }
     
 public void addPlayer(Player player) {
-   
+    getPlayers().add(player);
 }
     @Override
     public void declareWinner() {

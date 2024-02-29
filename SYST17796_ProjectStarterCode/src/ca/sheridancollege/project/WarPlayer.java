@@ -27,7 +27,7 @@ public void receiveCard(Card card) {
     public void play() {
       
     }
-
+    @Override
     public Card playCard() {
         return deck.poll();
     }

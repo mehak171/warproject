@@ -18,7 +18,7 @@ public class Deck {
         initializeDeck();
     }
 
-    // Initializes a standard 52-card deck
+
     private void initializeDeck() {
         String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
         for (String suit : suits) {
