@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ca.sheridancollege.project;
-import java.util.Collections;
+
 import java.util.ArrayList;
 /**
  *
@@ -14,58 +14,76 @@ public class WarGame extends Game {
         super(name);
     }
       
-      
-
-    @Override
-    public void play() {
-      
-        Deck deck = new Deck();
-        Collections.shuffle(deck.getCards()); 
-      
-        ArrayList<Player> players = getPlayers();
-        int playerIndex = 0;
-        while (!deck.isEmpty()) {
-            players.get(playerIndex % players.size()).receiveCard(deck.draw());
-            playerIndex++;
-        }
-
-      
-        boolean gameContinue = true;
-        while (gameContinue) {
-            ArrayList<Card> playedCards;
-            playedCards = new ArrayList<>();
-            for (Player player : players) {
-                if (player.hasCards()) {
-                    Card playedCard = player.playCard();
-                    playedCards.add(playedCard);
-                    System.out.println(player.getName() + " plays " + playedCard);
-                }
-            }
-            
-
-        
-        }
-        if(!players.isEmpty()){
-        while(!deck.isEmpty()){
-            players.get(playerIndex % players.size()).receiveCard(deck.draw());
-            playerIndex++;
-        }
-        }else{
-                System.out.println("No players have been added to the game.");}
-        
-        
-    }
-    
-public void addPlayer(Player player) {
-    getPlayers().add(player);
-}
-    @Override
-    public void declareWinner() {
    
-        ArrayList<Player> players = getPlayers();
-        Player winner = players.get(0); 
-        System.out.println("Winner is " + winner.getName());
-    }
+  
 
+     @Override
+    
+ 
+public void play() {
+    final int maxRounds = 26;
+    int currentRound = 0;
+    
+   
+    ArrayList<Card> tempPile;
+
+    while (players.get(0).hasCards() && players.get(1).hasCards() && currentRound < maxRounds) {
+        currentRound++;
+        System.out.println("\n---- Round " + currentRound + " of " + maxRounds + " ----");
+        tempPile = new ArrayList<>();
+        ArrayList<Card> playedCards = new ArrayList<>();
+
+        for (Player player : players) {
+            Card playedCard = player.playCard();
+            if (playedCard != null) {
+                playedCards.add(playedCard);
+                 tempPile.add(playedCard);
+                System.out.println(player.getName() + " plays: " + playedCard.toString());
+            }
+        }
+
+        if (playedCards.size() == 2) { // Ensure both players could play a card
+            int compare = playedCards.get(0).getValue() - playedCards.get(1).getValue();
+
+            if (compare > 0) {
+         players.get(0).receiveCards(tempPile);
+    ((WarPlayer)players.get(0)).incrementRoundsWon(); // Increment rounds won for player 1
+    System.out.println(players.get(0).getName() + " Wins this round!");
+} else if (compare < 0) {
+    players.get(1).receiveCards(tempPile);
+    ((WarPlayer)players.get(1)).incrementRoundsWon(); // Increment rounds won for player 2
+    System.out.println(players.get(1).getName() + " Wins this round!");
+} else {
+                System.out.println("This round is a draw!");
+                // In case of draw, add custom logic here. For example, split the cards back to the players or initiate a 'war'
+            }
+        }
+
+        // Print current scores (number of cards for each player)
+        System.out.println("Current Score: [ " + players.get(0).getName() + ": " + ((WarPlayer)players.get(0)).getRoundsWon() + " ] [ " + players.get(1).getName() + ": " + ((WarPlayer)players.get(1)).getRoundsWon() + " ]");
+
+
+    // Final outcome
+    declareWinner();
+}
 }
 
+
+    public void declareWinner() {
+    ArrayList<Player> players = getPlayers();
+    int player1RoundsWon = ((WarPlayer) players.get(0)).getRoundsWon();
+    int player2RoundsWon = ((WarPlayer) players.get(1)).getRoundsWon();
+
+    System.out.println("\n---- FINAL SCORES ----");
+    System.out.println(players.get(0).getName() + ": " + player1RoundsWon);
+    System.out.println(players.get(1).getName() + ": " + player2RoundsWon);
+
+    if (player1RoundsWon > player2RoundsWon) {
+        System.out.println("*** " + players.get(0).getName() + " Wins! Congratulations! ***");
+    } else if (player2RoundsWon > player1RoundsWon) {
+        System.out.println("*** " + players.get(1).getName() + " Wins! Congratulations! ***");
+    } else {
+        System.out.println("*** The game is a draw! ***");
+    }
+}
+}

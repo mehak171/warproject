@@ -4,6 +4,8 @@
  * Add your name as an author and the date!
  */
 package ca.sheridancollege.project;
+import java.util.List;
+
 
 /**
  * A class that models each Player in the game. Players have an identifier, which should be unique.
@@ -41,5 +43,6 @@ public abstract class Player {
 
     public abstract void receiveCard(Card card); 
     public abstract boolean hasCards(); 
-    public abstract Card playCard(); 
+    public abstract Card playCard();
+    public abstract void receiveCards(List<Card> cards);
 }

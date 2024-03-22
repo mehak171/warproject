@@ -4,21 +4,35 @@
  */
 package ca.sheridancollege.project;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+import java.util.ArrayList;
 
 public class WarPlayer extends Player {
     private Queue<Card> deck = new LinkedList<>();
+     private int roundsWon = 0;
     
-    @Override
-public void receiveCard(Card card) {
-    this.deck.add(card);
-}
-
-
     public WarPlayer(String name) {
         super(name);
     }
+    @Override
+    public void receiveCard(Card card) { 
+        deck.add(card);
+    }
+    public void receiveCards(List<Card> cards) {
+    this.deck.addAll(cards);
+}
+    public void incrementRoundsWon() {
+        this.roundsWon++;
+    }
+    public int getRoundsWon() {
+        return this.roundsWon;
+    }
+    
+   
 
+
+    
     public void addCardToDeck(Card card) {
         deck.add(card);
     }
@@ -36,7 +50,7 @@ public void receiveCard(Card card) {
     public boolean hasCards() {
         return !deck.isEmpty();
     }
-
+  
     public int getDeckSize() {
         return deck.size();
     }
@@ -44,4 +58,8 @@ public void receiveCard(Card card) {
     public void addCardsToDeck(Queue<Card> cards) {
         deck.addAll(cards);
     }
+    public Queue<Card> getDeck() {
+        return new LinkedList<>(deck); 
+    }
 }
+

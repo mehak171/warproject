@@ -18,11 +18,11 @@ import java.util.ArrayList;
 public abstract class Game {
 
     private final String name;
-    ArrayList<Player> players;
+    protected ArrayList<Player> players;
 
     public Game(String name) {
         this.name = name;
-        players = new ArrayList();
+        players = new ArrayList<Player>();
     }
 
     /**
@@ -31,6 +31,10 @@ public abstract class Game {
     public String getName() {
         return name;
     }
+    public void addPlayer(Player player) {
+    players.add(player);
+}
+
 
     /**
      * @return the players of this game
@@ -49,6 +53,6 @@ public abstract class Game {
     public abstract void play();
 
    
-    public abstract void declareWinner();
+    
 
-}//end class
+}

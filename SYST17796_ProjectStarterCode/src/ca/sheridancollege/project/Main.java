@@ -30,15 +30,23 @@ public class Main {
             
             
             while (!deck.isEmpty()) {
-                player1.addCardToDeck(deck.draw());
+                player1.receiveCard(deck.draw());
                 if (!deck.isEmpty()) {
-                    player2.addCardToDeck(deck.draw());
+                    player2.receiveCard(deck.draw());
                 }
+            }
+            System.out.println(player1Name + "'s cards:");
+            for (Card card : player1.getDeck()) {
+                System.out.println(card);
+            }
+            System.out.println(player2Name + "'s cards:");
+            for (Card card : player2.getDeck()) {
+                System.out.println(card);
             }
             
             
             game.play();
             
-        scanner.close();}
+        }
     } 
 }
