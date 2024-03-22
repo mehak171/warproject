@@ -66,8 +66,9 @@ public void play() {
     // Final outcome
     declareWinner();
 }
+}
 
-@Override
+
     public void declareWinner() {
     ArrayList<Player> players = getPlayers();
     int player1RoundsWon = ((WarPlayer) players.get(0)).getRoundsWon();
@@ -84,6 +85,5 @@ public void play() {
     } else {
         System.out.println("*** The game is a draw! ***");
     }
-}
 }
 }
