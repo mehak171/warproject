@@ -13,10 +13,17 @@ public class Main {
             WarGame game = new WarGame("War Card Game");
             
             
-            System.out.print("Enter Player 1's name: ");
-            String player1Name = scanner.nextLine();
-            String player2Name = "Param"; //
             
+            String player1Name = "";
+            String player2Name = "Param";
+            
+            while (player1Name.trim().isEmpty()) {
+                System.out.print("Enter Player 1's name: ");
+                player1Name = scanner.nextLine();
+                if (player1Name.trim().isEmpty()) { 
+                    System.out.println("Player 1's name cannot be empty. Please enter a name.");
+                }
+            }
             
             WarPlayer player1 = new WarPlayer(player1Name);
             WarPlayer player2 = new WarPlayer(player2Name);
