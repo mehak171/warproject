@@ -10,6 +10,11 @@ import java.util.Scanner;/**
 public class Main {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
+            
+            System.out.println("Welcome to War Game!");
+            System.out.println("Press Enter to start the game...");
+
+            scanner.nextLine();
             WarGame game = new WarGame("War Card Game");
             
             
