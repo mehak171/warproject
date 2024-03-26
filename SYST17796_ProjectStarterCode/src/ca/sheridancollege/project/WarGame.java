@@ -42,30 +42,31 @@ public void play() {
             }
         }
 
-        if (playedCards.size() == 2) { // Ensure both players could play a card
+        if (playedCards.size() == 2) { 
             int compare = playedCards.get(0).getValue() - playedCards.get(1).getValue();
 
             if (compare > 0) {
          players.get(0).receiveCards(tempPile);
-    ((WarPlayer)players.get(0)).incrementRoundsWon(); // Increment rounds won for player 1
+    ((WarPlayer)players.get(0)).incrementRoundsWon(); 
     System.out.println(players.get(0).getName() + " Wins this round!");
 } else if (compare < 0) {
     players.get(1).receiveCards(tempPile);
-    ((WarPlayer)players.get(1)).incrementRoundsWon(); // Increment rounds won for player 2
+    ((WarPlayer)players.get(1)).incrementRoundsWon(); 
     System.out.println(players.get(1).getName() + " Wins this round!");
 } else {
                 System.out.println("This round is a draw!");
-                // In case of draw, add custom logic here. For example, split the cards back to the players or initiate a 'war'
+               
             }
         }
 
-        // Print current scores (number of cards for each player)
+        
         System.out.println("Current Score: [ " + players.get(0).getName() + ": " + ((WarPlayer)players.get(0)).getRoundsWon() + " ] [ " + players.get(1).getName() + ": " + ((WarPlayer)players.get(1)).getRoundsWon() + " ]");
 
 
-    // Final outcome
-    declareWinner();
+   
+    
 }
+    declareWinner();
 }
 
 
