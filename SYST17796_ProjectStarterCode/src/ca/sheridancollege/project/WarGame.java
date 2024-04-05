@@ -54,7 +54,8 @@ public void play() {
     ((WarPlayer)players.get(1)).incrementRoundsWon(); 
     System.out.println(players.get(1).getName() + " Wins this round!");
 } else {
-                System.out.println("This round is a draw!");
+        System.out.println("This round is a tie, initiating war!");
+             handleWar(tempPile);
                
             }
         }
@@ -64,10 +65,52 @@ public void play() {
 
 
    
-    
+    displayRemainingCards();
 }
+    
     declareWinner();
 }
+private void handleWar(ArrayList<Card> tempPile) {
+    System.out.println("This round is a tie, initiating war!");
+    
+    while (true) {
+        ArrayList<Card> warCards = new ArrayList<>();
+        for (int i = 0; i < 2; i++) { 
+            if (!players.get(i).hasCards()) {
+                System.out.println(players.get(i).getName() + " cannot continue the war! Running out of cards!");
+                return; 
+            }
+     Card card = players.get(i).playCard();
+            warCards.add(card);
+            tempPile.add(card); // Add drawn cards to the temp pile
+            System.out.println(players.get(i).getName() + " draws for war: " + card.toString());
+        }
+      int compare = warCards.get(0).getValue() - warCards.get(1).getValue();
+        if (compare > 0) {
+            players.get(0).receiveCards(tempPile);
+            ((WarPlayer)players.get(0)).incrementRoundsWon(); 
+            System.out.println(players.get(0).getName() + " wins the war and gains " + tempPile.size() + " cards!");
+            break; // Player 0 wins the war
+        } else if (compare < 0) {
+            players.get(1).receiveCards(tempPile);
+            ((WarPlayer)players.get(1)).incrementRoundsWon(); 
+            System.out.println(players.get(1).getName() + " wins the war and gains " + tempPile.size() + " cards!");
+            break; 
+        } else {
+            System.out.println("The war continues!");
+        }
+    }
+}
+    
+   
+
+private void displayRemainingCards() {
+    for (Player player : players) {
+        System.out.println(player.getName() + " has " + ((WarPlayer)player).getDeckSize() + " remaining cards.");
+    }
+    
+}
+
 
 
     public void declareWinner() {
