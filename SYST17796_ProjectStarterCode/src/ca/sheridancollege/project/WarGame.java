@@ -21,7 +21,7 @@ public class WarGame extends Game {
     
  
 public void play() {
-    final int maxRounds = 26;
+    final int maxRounds =26;
     int currentRound = 0;
     
    
