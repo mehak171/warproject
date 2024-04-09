@@ -5,15 +5,21 @@
 package ca.sheridancollege.project;
 
 import java.util.ArrayList;
+import java.util.Scanner; 
 /**
  *
  * @author mehak
  */
 public class WarGame extends Game {
+    Scanner scanner = new Scanner(System.in); 
+    private int totalRounds = 0;
+    private int player1Wins = 0;
+    private int player2Wins = 0;
+
+
       public WarGame(String name) {
         super(name);
     }
-      
    
   
 
@@ -21,15 +27,16 @@ public class WarGame extends Game {
     
  
 public void play() {
+     resetGameStatistics();
     final int maxRounds =26;
-    int currentRound = 0;
     
-   
     ArrayList<Card> tempPile;
 
-    while (players.get(0).hasCards() && players.get(1).hasCards() && currentRound < maxRounds) {
-        currentRound++;
-        System.out.println("\n---- Round " + currentRound + " of " + maxRounds + " ----");
+    while (players.get(0).hasCards() && players.get(1).hasCards() && totalRounds < maxRounds) {
+        totalRounds++;
+        System.out.println("\n---- Round " + totalRounds + " of " + maxRounds + " ----");
+        System.out.println("Press Enter to play the next round...");
+        scanner.nextLine();
         tempPile = new ArrayList<>();
         ArrayList<Card> playedCards = new ArrayList<>();
 
@@ -46,12 +53,15 @@ public void play() {
             int compare = playedCards.get(0).getValue() - playedCards.get(1).getValue();
 
             if (compare > 0) {
+                
          players.get(0).receiveCards(tempPile);
     ((WarPlayer)players.get(0)).incrementRoundsWon(); 
+    player1Wins++;
     System.out.println(players.get(0).getName() + " Wins this round!");
 } else if (compare < 0) {
     players.get(1).receiveCards(tempPile);
     ((WarPlayer)players.get(1)).incrementRoundsWon(); 
+    player2Wins++;
     System.out.println(players.get(1).getName() + " Wins this round!");
 } else {
         System.out.println("This round is a tie, initiating war!");
@@ -82,7 +92,7 @@ private void handleWar(ArrayList<Card> tempPile) {
             }
      Card card = players.get(i).playCard();
             warCards.add(card);
-            tempPile.add(card); // Add drawn cards to the temp pile
+            tempPile.add(card); 
             System.out.println(players.get(i).getName() + " draws for war: " + card.toString());
         }
       int compare = warCards.get(0).getValue() - warCards.get(1).getValue();
@@ -90,7 +100,7 @@ private void handleWar(ArrayList<Card> tempPile) {
             players.get(0).receiveCards(tempPile);
             ((WarPlayer)players.get(0)).incrementRoundsWon(); 
             System.out.println(players.get(0).getName() + " wins the war and gains " + tempPile.size() + " cards!");
-            break; // Player 0 wins the war
+            break; 
         } else if (compare < 0) {
             players.get(1).receiveCards(tempPile);
             ((WarPlayer)players.get(1)).incrementRoundsWon(); 
@@ -129,5 +139,47 @@ private void displayRemainingCards() {
     } else {
         System.out.println("*** The game is a draw! ***");
     }
+    showEndGameOptions();
 }
+    private void showEndGameOptions() 
+    {
+        while (true) {
+   
+            System.out.println("\n--- End of Game Options ---");
+            System.out.println("1. Play Again");
+            System.out.println("2. View Game Summary");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice (1-3): ");
+
+            String input = scanner.nextLine();
+            switch (input) {
+                case "1":
+                    play(); 
+                    return; 
+                case "2":
+                    displayGameSummary();
+                    break;
+                case "3":
+                    System.out.println("Exiting game. Thank you for playing!");
+                    return;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+                    break;
+            }
+        }
+    }
+
+    private void displayGameSummary() {
+         System.out.println("--- Game Summary ---");
+        System.out.println("Total Rounds Played: " + totalRounds);
+        System.out.println(players.get(0).getName() + " Total Wins: " + player1Wins);
+        System.out.println(players.get(1).getName() + " Total Wins: " + player2Wins);
+        System.out.println("Congratulations for winning the again");
+    }
+    private void resetGameStatistics() {
+        totalRounds = 0;
+        
+        player1Wins = 0;
+        player2Wins = 0;
+    }
 }
