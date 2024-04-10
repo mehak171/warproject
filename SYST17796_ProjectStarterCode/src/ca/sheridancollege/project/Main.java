@@ -23,10 +23,14 @@ public class Main {
             String player2Name = "Param";
             
             while (player1Name.trim().isEmpty()) {
-                System.out.print("Enter Player 1's name: ");
+                System.out.print("Enter Player 1's name(max 9 characters): ");
                 player1Name = scanner.nextLine();
                 if (player1Name.trim().isEmpty()) { 
                     System.out.println("Player 1's name cannot be empty. Please enter a name.");
+                }
+                else if (player1Name.trim().length() > 9 ){
+                    System.out.println("Player 1's name is too long. Please enter a name with no more than 9 characters.");
+                    player1Name ="";
                 }
             }
             
