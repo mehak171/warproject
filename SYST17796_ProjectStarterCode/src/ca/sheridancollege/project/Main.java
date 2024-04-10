@@ -20,7 +20,7 @@ public class Main {
             
             
             String player1Name = "";
-            String player2Name = "Param";
+            
             
             while (player1Name.trim().isEmpty()) {
                 System.out.print("Enter Player 1's name(max 9 characters): ");
@@ -31,6 +31,17 @@ public class Main {
                 else if (player1Name.trim().length() > 9 ){
                     System.out.println("Player 1's name is too long. Please enter a name with no more than 9 characters.");
                     player1Name ="";
+                }
+            }
+            String player2Name = "";
+            while (player2Name.trim().isEmpty() || player2Name.trim().length() > 9) {
+                System.out.print("Enter Player 2's name (max 9 characters): ");
+                player2Name = scanner.nextLine();
+                if (player2Name.trim().isEmpty()) { 
+                    System.out.println("Player 2's name cannot be empty. Please enter a name.");
+                } else if (player2Name.trim().length() > 9) {
+                    System.out.println("Player 2's name is too long. Please enter a name with no more than 9 characters.");
+                    player2Name = "";
                 }
             }
             
